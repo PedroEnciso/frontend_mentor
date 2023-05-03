@@ -14,9 +14,48 @@
 
     <link rel="stylesheet" href="/styles.css" />
 
+    <!-- importing font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Interactive comments section</title>
   </head>
   <body>
-    <script src="app.js"></script>
+    <main>
+      <div id="card_wrapper" class="card-wrapper"></div>
+      <div class="card">
+        <div class="card__title-line">
+          <img
+            src="./images/avatars/image-amyrobson.png"
+            alt="a photo of the user."
+            class="profile-image"
+          />
+          <p class="card__username">amyrobson</p>
+          <p>1 month ago</p>
+        </div>
+        <p>
+          Impressive! Though it seems the drag feature could be improved. But
+          overall it looks incredible. You've nailed the design and the
+          responsiveness at various breakpoints works really well.
+        </p>
+        <div class="card__feedback-line">
+          <div class="vote-box">
+            <button class="vote-box__button">+</button>
+            <span class="vote-box__number">12</span>
+            <button class="vote-box__button">-</button>
+          </div>
+          <div class="card__reply-wrapper">
+            <img src="./images/icon-reply.svg" alt="reply icon." />
+            <span class="card__reply">reply</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js" type="module"></script>
   </body>
 </html>
