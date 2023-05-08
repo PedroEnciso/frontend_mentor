@@ -114,13 +114,41 @@ button {
 }
 
 .card__reply-wrapper {
+  --color: var(--blue);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
+}
+
+.card__reply-wrapper:hover {
+  --color: var(--light-gray-blue);
 }
 
 .card__reply {
-  color: var(--blue);
+  color: var(--color);
   text-transform: capitalize;
   font-weight: 500;
+  transition: color 0.4s;
+}
+
+.reply-wrapper {
+  /* border: 1px solid blue; */
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.reply-line {
+  border-top: none;
+  border-left: 2px solid var(--light-gray-blue);
+}
+
+.card-reply {
+  flex-grow: 1;
+}
+
+.reply-to {
+  font-weight: 500;
+  color: var(--blue);
 }
