@@ -1,32 +1,104 @@
+// card_info: object, holds all the info of the comment
 const createCardHtml = (card_info) => {
   const card = document.createElement("div");
   card.classList.add("card");
 
-  const card__title__line = document.createElement("div");
-  card__title__line.classList.add("card__title-line");
-  card.appendChild(card__title__line);
-
-  const img = document.createElement("img");
-  img.classList.add("profile-image");
-  img.src = card_info.user.image.png;
-  card__title__line.appendChild(img);
-
-  const card__username = document.createElement("p");
-  card__username.classList.add("card__username");
-  card__username.innerText = card_info.user.username;
-  card__title__line.appendChild(card__username);
-
-  const created_at = document.createElement("p");
-  created_at.innerText = card_info.createdAt;
-  card__title__line.appendChild(created_at);
+  const card_title_line = create_title_line(
+    card_info.user.image.png,
+    card_info.user.username,
+    card_info.createdAt
+  );
+  card.appendChild(card_title_line);
 
   const content = document.createElement("p");
   content.innerText = card_info.content;
   card.appendChild(content);
 
+  const card_feedback_line = create_feedback_line(card_info.score);
+  card.appendChild(card_feedback_line);
+
+  return card;
+};
+
+const create_reply_wrapper_html = () => {
+  const reply_wrapper = document.createElement("div");
+  reply_wrapper.classList.add("reply-wrapper");
+
+  const hr = document.createElement("hr");
+  hr.classList.add("reply-line");
+  reply_wrapper.appendChild(hr);
+
+  const reply_cards = document.createElement("div");
+  reply_cards.classList.add("reply-cards");
+  reply_wrapper.appendChild(reply_cards);
+
+  return reply_wrapper;
+};
+
+const create_reply_html = (reply_info) => {
+  const card = document.createElement("div");
+  card.classList.add("card", "card-reply");
+
+  const card_title_line = create_title_line(
+    reply_info.user.image.png,
+    reply_info.user.username,
+    reply_info.createdAt
+  );
+  card.appendChild(card_title_line);
+
+  const reply_to = document.createElement("span");
+  reply_to.classList.add("reply-to");
+  reply_to.innerText = `@${reply_info.replyingTo} `;
+
+  const comment = document.createElement("span");
+  comment.innerText = reply_info.content;
+
+  const content = document.createElement("div");
+  content.appendChild(reply_to);
+  content.appendChild(comment);
+  card.appendChild(content);
+
+  const card_feedback_line = create_feedback_line(reply_info.score);
+  card.appendChild(card_feedback_line);
+
+  return card;
+};
+
+const createErrorHtml = (error) => {
+  const p = document.createElement("p");
+  p.innerText = `Sorry, there was an error loading the comments. The specific error message is ${error}. Please try again later.`;
+
+  return p;
+};
+
+// supporting methods for creating re-used card components
+
+// first line in each card
+const create_title_line = (img_src, username, time_elapsed) => {
+  const card__title__line = document.createElement("div");
+  card__title__line.classList.add("card__title-line");
+
+  const img = document.createElement("img");
+  img.classList.add("profile-image");
+  img.src = img_src;
+  card__title__line.appendChild(img);
+
+  const card__username = document.createElement("p");
+  card__username.classList.add("card__username");
+  card__username.innerText = username;
+  card__title__line.appendChild(card__username);
+
+  const created_at = document.createElement("p");
+  created_at.innerText = time_elapsed;
+  card__title__line.appendChild(created_at);
+
+  return card__title__line;
+};
+
+// vote/reply section in each card
+const create_feedback_line = (score) => {
   const card__feedback_line = document.createElement("div");
   card__feedback_line.classList.add("card__feedback-line");
-  card.appendChild(card__feedback_line);
 
   const vote_box = document.createElement("div");
   vote_box.classList.add("vote-box");
@@ -37,10 +109,10 @@ const createCardHtml = (card_info) => {
   add_button.innerText = "+";
   vote_box.appendChild(add_button);
 
-  const score = document.createElement("span");
-  score.classList.add("vote-box__number");
-  score.innerText = card_info.score;
-  vote_box.appendChild(score);
+  const score_number = document.createElement("span");
+  score_number.classList.add("vote-box__number");
+  score_number.innerText = score;
+  vote_box.appendChild(score_number);
 
   const sub_button = document.createElement("button");
   sub_button.classList.add("vote-box__button");
@@ -61,12 +133,12 @@ const createCardHtml = (card_info) => {
   card__reply.classList.add("card__reply");
   card__reply_wrapper.appendChild(card__reply);
 
-  return card;
+  return card__feedback_line;
 };
 
-const createErrorHtml = (error) => {
-  const p = document.createElement;
-  p.innerText = `Sorry, there was an error loading the comments. The specific error message is ${error}. Please try again later.`;
+export {
+  createCardHtml,
+  createErrorHtml,
+  create_reply_html,
+  create_reply_wrapper_html,
 };
-
-export { createCardHtml, createErrorHtml };
