@@ -7,6 +7,8 @@ import {
 
 const card_wrapper = document.getElementById("card_wrapper");
 
+let currentUser;
+
 fetch("./data.json")
   .then((response) => response.json())
   .then((data) => {
