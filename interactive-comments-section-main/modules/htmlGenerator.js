@@ -64,6 +64,35 @@ const create_reply_html = (reply_info) => {
   return card;
 };
 
+const create_comment_box_html = (user) => {
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  const card__comment = document.createElement("textarea");
+  card__comment.name = "comment";
+  card__comment.rows = "3";
+  card__comment.placeholder = "Add a comment...";
+  card__comment.classList.add("card__comment");
+  card.appendChild(card__comment);
+
+  const div = document.createElement("div");
+  div.classList.add("card__feedback-line");
+  card.appendChild(div);
+
+  const img = document.createElement("img");
+  img.classList.add("profile-image");
+  img.src = user.image.png;
+  img.alt = "user profile pic.";
+  div.appendChild(img);
+
+  const button = document.createElement("button");
+  button.classList.add("button");
+  button.innerText = "send";
+  div.appendChild(button);
+
+  return card;
+};
+
 const createErrorHtml = (error) => {
   const p = document.createElement("p");
   p.innerText = `Sorry, there was an error loading the comments. The specific error message is ${error}. Please try again later.`;
@@ -141,4 +170,5 @@ export {
   createErrorHtml,
   create_reply_html,
   create_reply_wrapper_html,
+  create_comment_box_html,
 };

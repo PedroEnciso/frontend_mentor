@@ -183,4 +183,10 @@ button {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.03rem;
+  cursor: pointer;
+  transition: 0.3s background-color;
+}
+
+.button:hover {
+  background-color: var(--light-gray-blue);
 }

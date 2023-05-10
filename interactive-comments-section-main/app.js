@@ -3,6 +3,7 @@ import {
   createErrorHtml,
   create_reply_html,
   create_reply_wrapper_html,
+  create_comment_box_html,
 } from "./modules/htmlGenerator.js";
 
 const card_wrapper = document.getElementById("card_wrapper");
@@ -29,6 +30,10 @@ fetch("./data.json")
         });
       }
     });
+
+    currentUser = data.currentUser;
+    const user_comment_area = create_comment_box_html(currentUser);
+    card_wrapper.appendChild(user_comment_area);
   })
   .catch((err) => {
     const error = createErrorHtml(err.message);
