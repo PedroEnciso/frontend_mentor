@@ -14,8 +14,9 @@ fetch("./data.json")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
+    currentUser = data.currentUser;
     data.comments.forEach((comment) => {
-      const card = createCardHtml(comment);
+      const card = createCardHtml(comment, currentUser.username);
       card_wrapper.appendChild(card);
 
       if (comment.replies.length > 1) {
@@ -25,13 +26,12 @@ fetch("./data.json")
         const reply_card_wrapper = reply_wrapper.lastChild;
         //display replies
         comment.replies.forEach((reply) => {
-          const reply_element = create_reply_html(reply);
+          const reply_element = create_reply_html(reply, currentUser.username);
           reply_card_wrapper.appendChild(reply_element);
         });
       }
     });
 
-    currentUser = data.currentUser;
     const user_comment_area = create_comment_box_html(currentUser);
     card_wrapper.appendChild(user_comment_area);
   })

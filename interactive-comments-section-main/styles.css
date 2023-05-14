@@ -70,7 +70,7 @@ button {
 .card__title-line {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .profile-image {
@@ -81,6 +81,16 @@ button {
 .card__username {
   font-weight: 500;
   color: var(--dark-blue);
+}
+
+.card__you-tag {
+  border-radius: 3px;
+  padding: 0.2rem 0.3rem;
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 0.85rem;
+  line-height: 1;
+  margin-right: 0.5rem;
 }
 
 .card__feedback-line {

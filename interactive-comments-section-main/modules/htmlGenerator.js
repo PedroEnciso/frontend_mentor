@@ -1,12 +1,13 @@
 // card_info: object, holds all the info of the comment
-const createCardHtml = (card_info) => {
+const createCardHtml = (card_info, user) => {
   const card = document.createElement("div");
   card.classList.add("card");
 
   const card_title_line = create_title_line(
     card_info.user.image.png,
     card_info.user.username,
-    card_info.createdAt
+    card_info.createdAt,
+    user
   );
   card.appendChild(card_title_line);
 
@@ -35,14 +36,15 @@ const create_reply_wrapper_html = () => {
   return reply_wrapper;
 };
 
-const create_reply_html = (reply_info) => {
+const create_reply_html = (reply_info, user) => {
   const card = document.createElement("div");
   card.classList.add("card", "card-reply");
 
   const card_title_line = create_title_line(
     reply_info.user.image.png,
     reply_info.user.username,
-    reply_info.createdAt
+    reply_info.createdAt,
+    user
   );
   card.appendChild(card_title_line);
 
@@ -103,7 +105,7 @@ const createErrorHtml = (error) => {
 // supporting methods for creating re-used card components
 
 // first line in each card
-const create_title_line = (img_src, username, time_elapsed) => {
+const create_title_line = (img_src, username, time_elapsed, user) => {
   const card__title__line = document.createElement("div");
   card__title__line.classList.add("card__title-line");
 
@@ -116,6 +118,13 @@ const create_title_line = (img_src, username, time_elapsed) => {
   card__username.classList.add("card__username");
   card__username.innerText = username;
   card__title__line.appendChild(card__username);
+
+  if (user === username) {
+    const p = document.createElement("p");
+    p.classList.add("card__you-tag");
+    p.innerText = "you";
+    card__title__line.appendChild(p);
+  }
 
   const created_at = document.createElement("p");
   created_at.innerText = time_elapsed;
