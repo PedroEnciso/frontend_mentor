@@ -15,7 +15,11 @@ const createCardHtml = (card_info, user) => {
   content.innerText = card_info.content;
   card.appendChild(content);
 
-  const card_feedback_line = create_feedback_line(card_info.score);
+  const card_feedback_line = create_feedback_line(
+    card_info.score,
+    card_info.user.username,
+    user
+  );
   card.appendChild(card_feedback_line);
 
   return card;
@@ -60,7 +64,11 @@ const create_reply_html = (reply_info, user) => {
   content.appendChild(comment);
   card.appendChild(content);
 
-  const card_feedback_line = create_feedback_line(reply_info.score);
+  const card_feedback_line = create_feedback_line(
+    reply_info.score,
+    reply_info.user.username,
+    user
+  );
   card.appendChild(card_feedback_line);
 
   return card;
@@ -134,7 +142,7 @@ const create_title_line = (img_src, username, time_elapsed, user) => {
 };
 
 // vote/reply section in each card
-const create_feedback_line = (score) => {
+const create_feedback_line = (score, username, current_username) => {
   const card__feedback_line = document.createElement("div");
   card__feedback_line.classList.add("card__feedback-line");
 
@@ -157,9 +165,31 @@ const create_feedback_line = (score) => {
   sub_button.innerText = "-";
   vote_box.appendChild(sub_button);
 
+  const card__button_wrapper = document.createElement("div");
+  card__button_wrapper.classList.add("card__button-wrapper");
+  if (username === current_username) {
+    console.log(username, current_username);
+    // add a delete button to the card
+    const delete_wrapper = document.createElement("div");
+    delete_wrapper.classList.add("card__delete-wrapper");
+    // delete_wrapper.classList.add("card__reply-wrapper");
+    card__button_wrapper.appendChild(delete_wrapper);
+
+    const delete_icon = document.createElement("img");
+    delete_icon.src = "./images/icon-delete.svg";
+    delete_icon.alt = "delete icon.";
+    delete_wrapper.appendChild(delete_icon);
+
+    const card__delete = document.createElement("span");
+    card__delete.classList.add("card__reply");
+    card__delete.innerText = "delete";
+    delete_wrapper.appendChild(card__delete);
+  }
+  card__feedback_line.appendChild(card__button_wrapper);
+
   const card__reply_wrapper = document.createElement("div");
   card__reply_wrapper.classList.add("card__reply-wrapper");
-  card__feedback_line.appendChild(card__reply_wrapper);
+  card__button_wrapper.appendChild(card__reply_wrapper);
 
   const reply_icon = document.createElement("img");
   reply_icon.src = "./images/icon-reply.svg";

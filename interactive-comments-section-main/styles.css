@@ -126,6 +126,24 @@ button {
   color: var(--blue);
 }
 
+.card__button-wrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card__delete-wrapper {
+  --color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.card__delete-wrapper:hover {
+  --color: var(--pale-red);
+}
+
 .card__reply-wrapper {
   --color: var(--blue);
   display: flex;
@@ -143,6 +161,7 @@ button {
   text-transform: capitalize;
   font-weight: 500;
   transition: color 0.4s;
+  line-height: 1;
 }
 
 .reply-wrapper {
