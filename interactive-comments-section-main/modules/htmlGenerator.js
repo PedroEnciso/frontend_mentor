@@ -1,3 +1,5 @@
+import comment from "./comment.js";
+
 // card_info: object, holds all the info of the comment
 const createCardHtml = (card_info, user) => {
   const card = document.createElement("div");
@@ -98,6 +100,7 @@ const create_comment_box_html = (user) => {
   const button = document.createElement("button");
   button.classList.add("button");
   button.innerText = "send";
+  button.onclick = () => comment();
   div.appendChild(button);
 
   return card;
