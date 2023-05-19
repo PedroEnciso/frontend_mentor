@@ -100,7 +100,7 @@ const create_comment_box_html = (user) => {
   const button = document.createElement("button");
   button.classList.add("button");
   button.innerText = "send";
-  button.onclick = () => comment();
+  button.onclick = () => comment(user, card__comment);
   div.appendChild(button);
 
   return card;
@@ -171,7 +171,6 @@ const create_feedback_line = (score, username, current_username) => {
   const card__button_wrapper = document.createElement("div");
   card__button_wrapper.classList.add("card__button-wrapper");
   if (username === current_username) {
-    console.log(username, current_username);
     // add a delete button to the card
     const delete_wrapper = document.createElement("div");
     delete_wrapper.classList.add("card__delete-wrapper");
