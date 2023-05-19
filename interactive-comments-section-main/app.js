@@ -7,6 +7,7 @@ import {
 } from "./modules/htmlGenerator.js";
 
 const card_wrapper = document.getElementById("card_wrapper");
+const comment_box_wrapper = document.getElementById("comment-box-wrapper");
 
 let currentUser;
 
@@ -33,7 +34,7 @@ fetch("./data.json")
     });
 
     const user_comment_area = create_comment_box_html(currentUser);
-    card_wrapper.appendChild(user_comment_area);
+    comment_box_wrapper.appendChild(user_comment_area);
   })
   .catch((err) => {
     const error = createErrorHtml(err.message);
