@@ -6,12 +6,12 @@ import {
   create_comment_box_html,
 } from "./modules/htmlGenerator.js";
 
+import getQuotes from "./modules/getQuotes.js";
+
 const card_wrapper = document.getElementById("card_wrapper");
 const comment_box_wrapper = document.getElementById("comment-box-wrapper");
 
 let currentUser;
-
-console.log(localStorage.getItem("comments"));
 
 let comments = localStorage.getItem("comments");
 
@@ -51,5 +51,6 @@ const fetchComments = () => {
 };
 
 if (!comments) {
-  fetchComments();
+  // fetchComments();
+  getQuotes();
 }
