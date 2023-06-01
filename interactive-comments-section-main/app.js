@@ -50,7 +50,10 @@ const fetchComments = () => {
     });
 };
 
-if (!comments) {
-  // fetchComments();
-  getQuotes();
-}
+(async () => {
+  if (!comments) {
+    // fetchComments();
+    let quotes = await getQuotes();
+    console.log(quotes);
+  }
+})();
