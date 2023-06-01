@@ -1,4 +1,8 @@
+import key from "../key.js";
+
 const url = "https://api.api-ninjas.com/v1/quotes?category=";
+
+console.log(key);
 
 const getQuotes = () => {
   console.log("getQuotes");
